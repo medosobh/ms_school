@@ -8,7 +8,7 @@
                     <group>
                         <field name="name"/>
                         <field name="subject_id"/>
-                        <field name="class_id"/>
+                        <field name="grade_id"/>
                         <field name="exam_date"/>
                         <field name="total_marks"/>
                     </group>
@@ -24,7 +24,7 @@
             <tree>
                 <field name="name"/>
                 <field name="subject_id"/>
-                <field name="class_id"/>
+                <field name="grade_id"/>
                 <field name="exam_date"/>
                 <field name="total_marks"/>
             </tree>

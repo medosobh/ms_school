@@ -6,7 +6,7 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="class_id"/>
+                        <field name="grade_id"/>
                         <field name="subject_id"/>
                         <field name="teacher_id"/>
                         <field name="day_of_week"/>
@@ -23,7 +23,7 @@
         <field name="model">school.timetable</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="class_id"/>
+                <field name="grade_id"/>
                 <field name="subject_id"/>
                 <field name="teacher_id"/>
                 <field name="day_of_week"/>
