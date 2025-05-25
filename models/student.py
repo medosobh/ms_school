@@ -30,9 +30,9 @@ class SchoolStudent(models.Model):
             ('female', 'Female')
         ]
     )
-    class_id = fields.Many2one(
-        comodel_name='school.class',
-        string="Class"
+    grade_id = fields.Many2one(
+        comodel_name='school.grade',
+        string="Grade"
     )
     parent_id = fields.Many2one(
         comodel_name='res.partner', string="Guardian" # to be invoiced later

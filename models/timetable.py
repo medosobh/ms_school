@@ -4,7 +4,7 @@ class SchoolTimetable(models.Model):
     _name = 'school.timetable'
     _description = 'Timetable'
 
-    class_id = fields.Many2one('school.class', required=True)
+    grade_id = fields.Many2one('school.grade', required=True)
     subject_id = fields.Many2one('school.subject', required=True)
     teacher_id = fields.Many2one('school.teacher', required=True)
     day_of_week = fields.Selection([

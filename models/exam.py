@@ -6,6 +6,6 @@ class SchoolExam(models.Model):
 
     name = fields.Char(required=True)
     subject_id = fields.Many2one('school.subject', required=True)
-    class_id = fields.Many2one('school.class', required=True)
+    grade_id = fields.Many2one('school.grade', required=True)
     exam_date = fields.Date(required=True)
     total_marks = fields.Integer()
