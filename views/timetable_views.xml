@@ -1,0 +1,43 @@
+<odoo>
+    <record id="view_form_school_timetable" model="ir.ui.view">
+        <field name="name">school.timetable.form</field>
+        <field name="model">school.timetable</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="class_id"/>
+                        <field name="subject_id"/>
+                        <field name="teacher_id"/>
+                        <field name="day_of_week"/>
+                        <field name="start_time"/>
+                        <field name="end_time"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_school_timetable" model="ir.ui.view">
+        <field name="name">school.timetable.tree</field>
+        <field name="model">school.timetable</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="class_id"/>
+                <field name="subject_id"/>
+                <field name="teacher_id"/>
+                <field name="day_of_week"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_school_timetable" model="ir.actions.act_window">
+        <field name="name">Timetable</field>
+        <field name="res_model">school.timetable</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="school_menu_timetable" name="Timetable" parent="school_menu_root" action="action_school_timetable"/>
+</odoo>
