@@ -4,11 +4,12 @@
         <field name="model">school.student</field>
         <field name="arch" type="xml">
             <form>
-                <sheet>
-                    <header>
+                <header>
                         <field name="state" widget="statusbar"
                                options="{'clickable': '1'}"/>
                     </header>
+                <sheet>
+                
                     <field name="photo" widget="image" class="oe_avatar"
                                    options="{&quot;preview_image&quot;: &quot;avatar_128&quot;}"/>
                     <group>

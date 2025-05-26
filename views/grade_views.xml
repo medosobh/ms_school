@@ -15,7 +15,6 @@
             </form>
         </field>
     </record>
-
     <record id="view_tree_school_grade" model="ir.ui.view">
         <field name="name">school.grade.tree</field>
         <field name="model">school.grade</field>
@@ -27,12 +26,10 @@
             </tree>
         </field>
     </record>
-
     <record id="action_school_grade" model="ir.actions.act_window">
-        <field name="name">grades</field>
+        <field name="name">Grades</field>
         <field name="res_model">school.grade</field>
         <field name="view_mode">tree,form</field>
     </record>
-
     <menuitem id="school_menu_grades" name="Grades" parent="school_menu_root" action="action_school_grade"/>
 </odoo>
