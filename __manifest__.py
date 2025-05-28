@@ -4,15 +4,17 @@
     'summary': 'Manage students, classes, and more',
     'category': 'Services',
     'depends': [
-        'base', 'web', 'board','contacts', 'mail'        ],
+        'base', 'web', 'board','contacts', 'mail','hr'
+        ],
     'data': [
         'security/ir.model.access.csv',
         'views/menu.xml',
         'views/student_views.xml',
-        'views/grade_views.xml',
+        'views/school_views.xml',
         'views/teacher_views.xml',
         'views/subject_views.xml',
         'views/exam_views.xml',
+        'views/timetable_views.xml',
     ],
     'installable': True,
     'application': True,

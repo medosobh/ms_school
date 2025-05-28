@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_form_school_exam" model="ir.ui.view">
         <field name="name">school.exam.form</field>
@@ -37,5 +38,5 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="school_menu_exams" name="Exams" parent="school_menu_root" action="action_school_exam"/>
+    <menuitem id="school_submenu_exams" name="Exams" parent="school_menu_exams" action="action_school_exam"/>
 </odoo>

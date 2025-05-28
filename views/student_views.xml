@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_form_school_student" model="ir.ui.view">
         <field name="name">school.student.form</field>
@@ -5,13 +6,10 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                        <field name="state" widget="statusbar"
-                               options="{'clickable': '1'}"/>
-                    </header>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
                 <sheet>
-                
-                    <field name="photo" widget="image" class="oe_avatar"
-                                   options="{&quot;preview_image&quot;: &quot;avatar_128&quot;}"/>
+                    <field name="photo" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;avatar_128&quot;}"/>
                     <group>
                         <group string="Persinal Information">
                             <field name="name"/>
@@ -25,6 +23,8 @@
                         </group>
                         <group string="School Information">
                             <field name="grade_id"/>
+                            <field name="section_id"/>
+                            <field name="classroom_id"/>
                             <field name="status"/>
                             <field name="active" invisible="1"/>
                         </group>
@@ -55,6 +55,5 @@
         <field name="res_model">school.student</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="school_menu_root" name="School"/>
-    <menuitem id="school_menu_students" name="Students" parent="school_menu_root" action="action_school_student"/>
+    <menuitem id="school_submenu_students" name="Students" parent="school_menu_students" action="action_school_student"/>
 </odoo>

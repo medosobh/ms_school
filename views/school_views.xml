@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_form_school_grade" model="ir.ui.view">
+            <field name="name">school.grade.form</field>
+            <field name="model">school.grade</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="code" />
+                            <field name="teacher_id"/>
+                            <field name="description" />
+                        </group>
+                        <notebook>
+                            <page name="section" string="Sections">
+                                <field name="section_ids">
+                                    <tree>
+                                        <field name="name" />
+                                        <field name="code" />
+                                        <field name="teacher_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_tree_school_grade" model="ir.ui.view">
+            <field name="name">school.grade.tree</field>
+            <field name="model">school.grade</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="teacher_id" />
+                </tree>
+            </field>
+        </record>
+        <record id="action_school_grade" model="ir.actions.act_window">
+            <field name="name">Grades</field>
+            <field name="res_model">school.grade</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="school_menu_grades" name="Grades" parent="school_menu_structure" action="action_school_grade" sequence="10" />
+    </data>
+    <data>
+        <!-- Section Tree View -->
+        <record model="ir.ui.view" id="school_section_tree_view">
+            <field name="name">school.section.tree</field>
+            <field name="model">school.section</field>
+            <field name="arch" type="xml">
+                <tree string="Sections">
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="grade_id" />
+                    <field name="teacher_id" />
+                    <field name="capacity" />
+                </tree>
+            </field>
+        </record>
+        <!-- Section Form View -->
+        <record model="ir.ui.view" id="school_section_form_view">
+            <field name="name">school.section.form</field>
+            <field name="model">school.section</field>
+            <field name="arch" type="xml">
+                <form string="Section">
+                    <sheet>
+                        <group>
+                            <group string="Section Information">
+                                <field name="name" />
+                                <field name="code" />
+                                <field name="grade_id" />
+                                <field name="teacher_id" />
+                            </group>
+                            <group>
+                                <field name="capacity" />
+                            </group>
+                        </group>
+                        <notebook>
+                            
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" />
+                        <field name="activity_ids" />
+                        <field name="message_ids" />
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- Section Action -->
+        <record model="ir.actions.act_window" id="school_section_action">
+            <field name="name">Sections</field>
+            <field name="res_model">school.section</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+					Create a new section
+				</p>
+            </field>
+        </record>
+        <!-- Section Menu -->
+        <menuitem id="school_menu_sections" name="Sections" parent="school_menu_structure" action="school_section_action"/>
+    </data>
+    <data>
+        <record model="ir.ui.view" id="school_classroom_tree_view">
+            <field name="name">school.classroom.tree</field>
+            <field name="model">school.classroom</field>
+            <field name="arch" type="xml">
+                <tree string="Class Rooms">
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="section_id" />
+                    <field name="grade_id" />
+                    <field name="teacher_id" />
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="school_classroom_form_view">
+            <field name="name">school.classroom.form</field>
+            <field name="model">school.classroom</field>
+            <field name="arch" type="xml">
+                <form string="Class Rooms">
+                    <sheet>
+                        <group>
+                            <group string="Section Information">
+                                <field name="name" />
+                                <field name="code" />
+                                <field name="section_id" />
+                                <field name="grade_id" />
+                                <field name="teacher_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" />
+                        <field name="activity_ids" />
+                        <field name="message_ids" />
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- Section Action -->
+        <record model="ir.actions.act_window" id="school_section_action">
+            <field name="name">Sections</field>
+            <field name="res_model">school.section</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+					Create a new section
+				</p>
+            </field>
+        </record>
+        <!-- Section Menu -->
+        <menuitem id="school_menu_sections" name="Sections" parent="school_menu_structure" action="school_section_action"/>
+    </data>
+</odoo>

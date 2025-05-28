@@ -1,43 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_form_school_timetable" model="ir.ui.view">
-        <field name="name">school.timetable.form</field>
-        <field name="model">school.timetable</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group>
-                        <field name="grade_id"/>
-                        <field name="subject_id"/>
-                        <field name="teacher_id"/>
-                        <field name="day_of_week"/>
-                        <field name="start_time"/>
-                        <field name="end_time"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
+    <data>
+        <record model="ir.ui.view" id="school_timetable_config_form">
+            <field name="name">school.timetable.config.form</field>
+            <field name="model">school.timetable.config</field>
+            <field name="arch" type="xml">
+                <form string="Timetable Configuration">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="base_date"/>
+                            <field name="number_of_weeks"/>
+                            <field name="end_date" option="{'readonly': [('number_of_weeks', '=', False)]}"/>
+                            <field name="active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="school_timetable_config_tree">
+            <field name="name">school.timetable.config.tree</field>
+            <field name="model">school.timetable.config</field>
+            <field name="arch" type="xml">
+                <tree string="Timetable Configurations">
+                    <field name="name"/>
+                    <field name="base_date"/>
+                    <field name="number_of_weeks"/>
+                    <field name="end_date"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="school_timetable_config_action">
+            <field name="name">Timetable Configurations</field>
+            <field name="res_model">school.timetable.config</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new timetable configuration!
+        </p>
+            </field>
+        </record>
+        <menuitem id="school_timetable_config_menu" name="Timetable Config" parent="school_menu_configuration" action="school_timetable_config_action" sequence="20"/>
+    </data>
 
-    <record id="view_tree_school_timetable" model="ir.ui.view">
-        <field name="name">school.timetable.tree</field>
-        <field name="model">school.timetable</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="grade_id"/>
-                <field name="subject_id"/>
-                <field name="teacher_id"/>
-                <field name="day_of_week"/>
-                <field name="start_time"/>
-                <field name="end_time"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="action_school_timetable" model="ir.actions.act_window">
-        <field name="name">Timetable</field>
-        <field name="res_model">school.timetable</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-
-    <menuitem id="school_menu_timetable" name="Timetable" parent="school_menu_root" action="action_school_timetable"/>
+    <data>
+        <record id="view_form_school_timetable" model="ir.ui.view">
+            <field name="name">school.timetable.form</field>
+            <field name="model">school.timetable</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="classroom_id"/>
+                            <field name="subject_id"/>
+                            <field name="teacher_id"/>
+                            <field name="day_of_week"/>
+                            <field name="start_time"/>
+                            <field name="end_time"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_tree_school_timetable" model="ir.ui.view">
+            <field name="name">school.timetable.tree</field>
+            <field name="model">school.timetable</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="classroom_id"/>
+                    <field name="subject_id"/>
+                    <field name="teacher_id"/>
+                    <field name="day_of_week"/>
+                    <field name="start_time"/>
+                    <field name="end_time"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_school_timetable" model="ir.actions.act_window">
+            <field name="name">Timetable</field>
+            <field name="res_model">school.timetable</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="school_menu_timetable" name="Timetable" parent="school_menu_subjects" action="action_school_timetable" sequence="42"/>
+    </data>
 </odoo>

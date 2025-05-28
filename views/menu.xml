@@ -2,29 +2,14 @@
 <odoo>
     <data noupdate="0">
         <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
-        <menuitem id="school_root"
-                  name="School"
-                  web_icon="static/description/icon.png"
-                  sequence="145"/>
-        <menuitem id="school_menu_order"
-                  name="School"
-                  parent="school_root"
-                  sequence="20"/>
-        <menuitem id="school_menu_operation"
-                  name="Operation"
-                  parent="school_root"
-                  sequence="30"/>
-        <menuitem id="school_menu_service"
-                  name="Service"
-                  parent="school_root"
-                  sequence="40"/>
-        <menuitem id="school_menu_reporting"
-                  name="Reporting"
-                  parent="school_root"
-                  sequence="80"/>
-        <menuitem id="school_menu_configuration"
-                  name="Configuration"
-                  parent="school_root"
-                  sequence="90"/>
+        <menuitem id="school_root" name="School" web_icon="static/description/icon.png" sequence="145"/>
+        
+        <menuitem id="school_menu_students" name="Students" parent="school_root" sequence="20"/>
+        <menuitem id="school_menu_teachers" name="Teachers" parent="school_root" sequence="30"/>
+        <menuitem id="school_menu_subjects" name="Subjects" parent="school_root" sequence="40"/>
+        <menuitem id="school_menu_exams" name="Exams" parent="school_root" sequence="50"/>
+        <menuitem id="school_menu_structure" name="School Structure" parent="school_root" sequence="70"/>
+
+        <menuitem id="school_menu_configuration" name="Configuration" parent="school_root" sequence="90"/>
     </data>
 </odoo>
