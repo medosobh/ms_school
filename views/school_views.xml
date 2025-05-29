@@ -135,7 +135,7 @@
                             </group>
                         </group>
                         <notebook>
-                            <page name="timetable" string="Timetable"></page>
+                            <page name="timetable" string="Timetable">
                                 <field name="timetable_ids" widget="one2many_list" context="{'default_classroom_id': id}">
                                     <tree>
                                         <field name="timetable_config_id"/>
@@ -146,6 +146,7 @@
                                         <field name="end_time"/>
                                     </tree>
                                 </field>
+                            </page>
                             <page name="students" string="Students">
                                 <field name="student_ids" widget="one2many_list" context="{'default_classroom_id': id}">
                                     <tree>
@@ -155,7 +156,6 @@
                                     </tree>
                                 </field>
                             </page>
-                            
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">
