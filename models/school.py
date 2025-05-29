@@ -7,6 +7,13 @@ from datetime import timedelta
 class SchoolGrade(models.Model):
     _name = 'school.grade'
     _description = 'School Grades'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = 'name asc'
+    _rec_name = 'name'
+    _sql_constraints = [
+        ('name_unique', 'UNIQUE(name)', 'The grade name must be unique!'),
+        ('code_unique', 'UNIQUE(code)', 'The grade code must be unique!'),
+    ]
 
     name = fields.Char(required=True)
     code = fields.Char(required=True)
@@ -19,6 +26,12 @@ class SchoolSection(models.Model):
     _name = "school.section"
     _description = "School Sections"
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = 'name asc'
+    _rec_name = 'name'
+    _sql_constraints = [
+        ('name_unique', 'UNIQUE(name)', 'The section name must be unique!'),
+        ('code_unique', 'UNIQUE(code)', 'The section code must be unique!'),
+    ]
 
     name = fields.Char(string="Section Name", required=True)
     code = fields.Char(string="Section Code", required=True)
@@ -33,6 +46,12 @@ class ClassRoom(models.Model):
     _name = "school.classroom"
     _description = "School Classrooms"
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = 'name asc'
+    _rec_name = 'name'
+    _sql_constraints = [
+        ('name_unique', 'UNIQUE(name)', 'The classroom name must be unique!'),
+        ('code_unique', 'UNIQUE(code)', 'The classroom code must be unique!'),
+    ]
 
     name = fields.Char(string="Classroom Name", required=True)
     code = fields.Char(string="Classroom Code", required=True)
@@ -45,5 +64,16 @@ class ClassRoom(models.Model):
     student_ids = fields.One2many(
         'school.student', 'classroom_id', string="Students")
     active = fields.Boolean(default=True)
+    timetable_ids = fields.One2many(
+        'school.timetable', 'classroom_id', string="Timetable Entries")
+    
+    
+    @api.constrains('capacity', 'student_ids')
+    def _check_capacity(self):
+        for record in self:
+            if len(record.student_ids) > record.capacity:
+                raise ValidationError(
+                    _("The number of students in the classroom exceeds its capacity!"))
+    
 
     

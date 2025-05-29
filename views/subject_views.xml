@@ -10,6 +10,10 @@
                         <field name="name"/>
                         <field name="code"/>
                         <field name="description"/>
+                        <field name="teacher_id"/>
+                        <field name="grade_id"/>
+                        <field name="section_id"/>
+                        <field name="active" invisible="1"/>
                     </group>
                 </sheet>
             </form>
@@ -23,6 +27,10 @@
             <tree>
                 <field name="name"/>
                 <field name="code"/>
+                <field name="teacher_id"/>
+                <field name="grade_id"/>
+                <field name="section_id"/>
+                <field name="active" invisible="1"/>
             </tree>
         </field>
     </record>

@@ -52,6 +52,7 @@
                 <form>
                     <sheet>
                         <group>
+                            <field name="timetable_config_id"/>
                             <field name="classroom_id"/>
                             <field name="subject_id"/>
                             <field name="teacher_id"/>
@@ -68,6 +69,7 @@
             <field name="model">school.timetable</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="timetable_config_id"/>
                     <field name="classroom_id"/>
                     <field name="subject_id"/>
                     <field name="teacher_id"/>

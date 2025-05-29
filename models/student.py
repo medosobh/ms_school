@@ -9,6 +9,11 @@ class SchoolStudent(models.Model):
     _description = 'Student'
     _rec_name = 'full_name'
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = 'name asc'
+    _sql_constraints = [
+        ('name_unique', 'UNIQUE(name)', 'The student name must be unique!'),
+        ('student_id_unique', 'UNIQUE(student_id)', 'The student ID must be unique!'),
+    ]
 
     state = fields.Selection(string="State", selection=[
         ('draft', 'Draft'),

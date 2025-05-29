@@ -7,6 +7,13 @@ from datetime import datetime, timedelta
 class SchoolTimetableConfig(models.Model):
     _name = 'school.timetable.config'
     _description = 'Timetable Configuration'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = 'base_date desc'
+    _sql_constraints = [
+        ('name_unique', 'UNIQUE(name)', 'The timetable name must be unique!'),
+        ('base_date_future', 'CHECK(base_date >= CURRENT_DATE)',
+         'The base date must be today or in the future!'),
+    ]
     _rec_name = 'name'
 
     name = fields.Char(string='Year Timetable Name', required=True)
@@ -25,9 +32,22 @@ class SchoolTimetableConfig(models.Model):
 class SchoolTimetable(models.Model):
     _name = 'school.timetable'
     _description = 'Timetable'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = 'timetable_config_id desc, day_of_week asc, start_time asc'
+    _sql_constraints = [
+        ('unique_timetable', 'UNIQUE(timetable_config_id, classroom_id, subject_id, teacher_id, day_of_week, start_time)',
+         'The timetable entry must be unique for the combination of year timetable, classroom, subject, teacher, day of week, and start time!'),
+    ]
+    _rec_name = 'name'
 
-    config_id = fields.Many2one(
-        'school.timetable.config', string="Year Timetable", required=True)
+    name = fields.Char(string='Timetable Entry Name', compute='_compute_name', store=True)
+    @api.depends('timetable_config_id', 'classroom_id', 'subject_id')
+    def _compute_name(self):
+        for record in self:
+            record.name = f"{record.timetable_config_id.name} - {record.classroom_id.name} - {record.subject_id.name}"
+    
+    
+    timetable_config_id = fields.Many2one('school.timetable.config', string="Year Timetable", required=True)
     classroom_id = fields.Many2one('school.classroom', required=True)
     subject_id = fields.Many2one('school.subject', required=True)
     teacher_id = fields.Many2one('school.teacher', required=True)
@@ -49,15 +69,15 @@ class SchoolTimetable(models.Model):
     calendar_end = fields.Datetime(
         string="Calendar End", compute="_compute_calendar_dates", store=True)
 
-    @api.depends('day_of_week', 'start_time', 'end_time', 'config_id.base_date')
+    @api.depends('day_of_week', 'start_time', 'end_time', 'timetable_config_id.base_date')
     def _compute_calendar_dates(self):
         weekdays = {
             'sun': 0, 'mon': 1, 'tue': 2, 'wed': 3,
             'thu': 4, 'fri': 5, 'sat': 6
         }
         for rec in self:
-            if rec.day_of_week and rec.config_id:
-                base_date = fields.Date.from_string(rec.config_id.base_date)
+            if rec.day_of_week and rec.timetable_config_id:
+                base_date = fields.Date.from_string(rec.timetable_config_id.base_date)
                 target_date = base_date + \
                     timedelta(days=weekdays[rec.day_of_week])
                 rec.calendar_date = datetime.combine(

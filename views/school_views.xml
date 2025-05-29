@@ -110,7 +110,7 @@
             <field name="name">school.classroom.tree</field>
             <field name="model">school.classroom</field>
             <field name="arch" type="xml">
-                <tree string="Class Rooms">
+                <tree string="Classrooms">
                     <field name="name" />
                     <field name="code" />
                     <field name="section_id" />
@@ -123,7 +123,7 @@
             <field name="name">school.classroom.form</field>
             <field name="model">school.classroom</field>
             <field name="arch" type="xml">
-                <form string="Class Rooms">
+                <form string="Classrooms">
                     <sheet>
                         <group>
                             <group string="Section Information">
@@ -135,6 +135,26 @@
                             </group>
                         </group>
                         <notebook>
+                            <page name="timetable" string="Timetable"></page>
+                                <field name="timetable_ids" widget="one2many_list" context="{'default_classroom_id': id}">
+                                    <tree>
+                                        <field name="timetable_config_id"/>
+                                        <field name="subject_id"/>
+                                        <field name="teacher_id"/>
+                                        <field name="day_of_week"/>
+                                        <field name="start_time"/>
+                                        <field name="end_time"/>
+                                    </tree>
+                                </field>
+                            <page name="students" string="Students">
+                                <field name="student_ids" widget="one2many_list" context="{'default_classroom_id': id}">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="student_id"/>
+                                        <field name="date_of_birth"/>
+                                    </tree>
+                                </field>
+                            </page>
                             
                         </notebook>
                     </sheet>
@@ -147,17 +167,17 @@
             </field>
         </record>
         <!-- Section Action -->
-        <record model="ir.actions.act_window" id="school_section_action">
-            <field name="name">Sections</field>
-            <field name="res_model">school.section</field>
+        <record model="ir.actions.act_window" id="school_classroom_action">
+            <field name="name">Classroom</field>
+            <field name="res_model">school.classroom</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-					Create a new section
+					Create a new Classroom
 				</p>
             </field>
         </record>
         <!-- Section Menu -->
-        <menuitem id="school_menu_sections" name="Sections" parent="school_menu_structure" action="school_section_action"/>
+        <menuitem id="school_menu_classroom" name="Classroom" parent="school_menu_structure" action="school_classroom_action"/>
     </data>
 </odoo>
