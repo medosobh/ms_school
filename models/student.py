@@ -32,7 +32,7 @@ class SchoolStudent(models.Model):
         comodel_name='school.grade', string="Grade")
     section_id = fields.Many2one(comodel_name='school.section',
                                  string="Section",  help="The section to which the student belongs")
-    classroom_id = fields.Many2one(
+    classroom_id = fields.Many2many(
         comodel_name='school.classroom', string="Current Classroom", help="The classroom where the student is currently enrolled")
     parent_id = fields.Many2one(comodel_name='res.partner', string="Guardian",
                                 help="The guardian or parent of the student")

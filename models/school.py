@@ -61,8 +61,7 @@ class ClassRoom(models.Model):
     capacity = fields.Integer(related='section_id.capacity', string="Section Capacity", readonly=True)
     teacher_id = fields.Many2one('school.teacher', string="Classroom Teacher")
     description = fields.Text(string="Description")
-    student_ids = fields.One2many(
-        'school.student', 'classroom_id', string="Students")
+    student_ids = fields.Many2many('school.student',string="Students")
     active = fields.Boolean(default=True)
     timetable_ids = fields.One2many(
         'school.timetable', 'classroom_id', string="Timetable Entries")

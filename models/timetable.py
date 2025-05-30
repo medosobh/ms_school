@@ -20,6 +20,8 @@ class SchoolTimetableConfig(models.Model):
     base_date = fields.Date(string='Start Date', required=True)  # e.g., 2024-09-15
     number_of_weeks = fields.Integer(string='Number of Weeks', default=40)
     end_date = fields.Date(string='End Date', compute='_compute_end_date', store=True)
+    class_duratuion = fields.Float(string='Class Duration (hours)', default=1.0, help="Duration of each class in hours")
+    description = fields.Text(string='Description')
     active = fields.Boolean(default=True)
     
     def _compute_end_date(self):
@@ -84,3 +86,29 @@ class SchoolTimetable(models.Model):
                     target_date, datetime.min.time()) + timedelta(hours=rec.start_time)
                 rec.calendar_end = datetime.combine(
                     target_date, datetime.min.time()) + timedelta(hours=rec.end_time)
+
+    duplicate_timetable = fields.Boolean(
+        string="Duplicate Timetable",
+        help="Check this box to duplicate the timetable entry for the next week.",
+        default=False
+    )
+    reference_id = fields.Many2one('school.timetable', string="Reference Timetable Entry")
+    
+    
+    @api.constrains('teacher_id', 'start_time', 'timetable_config_id', 'day_of_week')
+    def _check_duplicate_teacher_timetable(self):
+        for rec in self:
+            domain = [
+                ('timetable_config_id', '=', rec.timetable_config_id.id),
+                ('teacher_id', '=', rec.teacher_id.id),
+                ('day_of_week', '=', rec.day_of_week),
+                ('start_time', '=', rec.start_time),
+                ('id', '!=', rec.id),
+            ]
+            existing_record = self.search(domain, limit=1)
+            if existing_record:
+                rec.duplicate_timetable = True
+                rec.reference_id = existing_record.id
+            else:
+                rec.duplicate_timetable = False
+                rec.reference_id = False

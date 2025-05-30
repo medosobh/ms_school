@@ -9,7 +9,7 @@
         <menuitem id="school_menu_subjects" name="Subjects" parent="school_root" sequence="40"/>
         <menuitem id="school_menu_exams" name="Exams" parent="school_root" sequence="50"/>
         <menuitem id="school_menu_structure" name="School Structure" parent="school_root" sequence="70"/>
-
+        <menuitem id="school_menu_reporting" name="Reporting" parent="school_root" sequence="80"/>
         <menuitem id="school_menu_configuration" name="Configuration" parent="school_root" sequence="90"/>
     </data>
 </odoo>
