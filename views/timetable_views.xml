@@ -55,6 +55,7 @@
                             <field name="timetable_config_id"/>
                             <field name="classroom_id"/>
                             <field name="subject_id"/>
+                            <field name="book_id"/>
                             <field name="teacher_id"/>
                             <field name="day_of_week"/>
                             <field name="start_time"/>
@@ -72,6 +73,7 @@
                     <field name="timetable_config_id"/>
                     <field name="classroom_id"/>
                     <field name="subject_id"/>
+                    <field name="book_id"/>
                     <field name="teacher_id"/>
                     <field name="day_of_week"/>
                     <field name="start_time"/>
@@ -84,6 +86,6 @@
             <field name="res_model">school.timetable</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <menuitem id="school_menu_timetable" name="Timetable" parent="school_menu_subjects" action="action_school_timetable" sequence="42"/>
+        <menuitem id="school_menu_timetable" name="Timetable" parent="school_menu_subjects" action="action_school_timetable" sequence="43"/>
     </data>
 </odoo>

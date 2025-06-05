@@ -52,6 +52,7 @@ class SchoolTimetable(models.Model):
     timetable_config_id = fields.Many2one('school.timetable.config', string="Year Timetable", required=True)
     classroom_id = fields.Many2one('school.classroom', required=True)
     subject_id = fields.Many2one('school.subject', required=True)
+    book_id = fields.Many2one('school.book', string="Book", help="The book associated with the subject")
     teacher_id = fields.Many2one('school.teacher', required=True)
     day_of_week = fields.Selection([
         ('sun', 'Sunday'),

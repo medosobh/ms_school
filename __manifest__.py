@@ -4,7 +4,7 @@
     'summary': 'Manage students, classes, and more',
     'category': 'Services',
     'depends': [
-        'base', 'web', 'board','contacts', 'mail','hr'
+        'base', 'web', 'board','contacts', 'mail','hr','calendar'
         ],
     'data': [
         'security/ir.model.access.csv',

@@ -2,9 +2,11 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 ms_school.access_school_student,access_school_student,ms_school.model_school_student,base.group_user,1,1,1,1
 ms_school.access_school_teacher,access_school_teacher,ms_school.model_school_teacher,base.group_user,1,1,1,1
 ms_school.access_school_subject,access_school_subject,ms_school.model_school_subject,base.group_user,1,1,1,1
+ms_school.access_school_book,access_school_book,ms_school.model_school_book,base.group_user,1,1,1,1
 ms_school.access_school_grade,access_school_grade,ms_school.model_school_grade,base.group_user,1,1,1,1
 ms_school.access_school_section,access_school_section,ms_school.model_school_section,base.group_user,1,1,1,1
 ms_school.access_school_classroom,access_school_classroom,ms_school.model_school_classroom,base.group_user,1,1,1,1
 ms_school.access_school_exam,access_school_exam,ms_school.model_school_exam,base.group_user,1,1,1,1
+ms_school.access_school_exam_student,access_school_exam_student,ms_school.model_school_exam_student,base.group_user,1,1,1,1
 ms_school.access_school_timetable,access_school_timetable,ms_school.model_school_timetable,base.group_user,1,1,1,1
 ms_school.access_school_timetable_config,access_school_timetable_config,ms_school.model_school_timetable_config,base.group_user,1,1,1,1

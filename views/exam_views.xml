@@ -5,19 +5,85 @@
         <field name="model">school.exam</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_load_student" type="object" string="Load Students" class="oe_stat_button" icon="oi-arrow-down"/>
+                    <button name="action_schedule_exam" type="object" string="Schedual" class="oe_stat_button" icon="fa-calendar-check-o"/>
+                    <button name="action_complete_exam" type="object" string="Complete" class="oe_stat_button" icon="fa-check"/>
+                    <button name="action_cancel_exam" type="object" string="Cancel" class="oe_stat_button" icon="fa-times"/>
+                    <button name="action_print_exam" type="object" string="Print" class="oe_stat_button" icon="fa-print"/>
+                    <button name="action_send_exam_link" type="object" string="Send Link" class="oe_stat_button" icon="fa-envelope"/>
+                    <button name="action_send_exam_materials" type="object" string="Send Material" class="oe_stat_button" icon="fa-paperclip"/>
+                    <button name="action_archive_exam" type="object" string="Archive" class="oe_stat_button" icon="fa-archive"/>
+                    <button name="action_unarchive_exam" type="object" string="UnArchive" class="oe_stat_button" icon="fa-unarchive"/>
+                    <button name="action_reset_exam" type="object" string="Reset" class="oe_stat_button" icon="fa-undo"/>
+                    <button name="action_delete_exam" type="object" string="Delete" class="oe_stat_button" icon="fa-trash"/>
+                    <button name="action_duplicate_exam" type="object" string="Duplicate" class="oe_stat_button" icon="fa-copy"/>
+                    <button name="action_view_exam_results" type="object" string="View Result" class="oe_stat_button" icon="fa-bar-chart"/>
+                    <button name="action_view_exam_attendance" type="object" string="View Attendance" class="oe_stat_button" icon="fa-users"/>
+                    <field name="state" widget="statusbar"
+                               statusbar_visible="draft,scheduled,completed,cancelled"
+                               options="{'clickable': '1'}"/>
+                </header>
                 <sheet>
+                    <div>
+                        <h2>
+                            <field name="name" placeholder="Exam Name"/>
+                        </h2>
+                    </div>
                     <group>
-                        <field name="name"/>
-                        <field name="subject_id"/>
-                        <field name="grade_id"/>
-                        <field name="exam_date"/>
-                        <field name="total_marks"/>
+                        <group>
+                            <field name="timetable_config_id"/>
+                            <field name="subject_id"/>
+                            <field name="grade_id"/>
+                            <field name="section_id"/>
+                            <field name="teacher_id"/>
+                        </group>
+                        <group>
+                            <field name="classroom_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="exam_date"/>
+                            <field name="exam_type"/>
+                            <field name="exam_format"/>
+                            <field name="start_time"/>
+                            <field name="end_time"/>
+                            <field name="duration"/>
+                        </group>
+                        <group>
+                            <field name="max_marks"/>
+                            <field name="min_marks"/>
+                            <field name="passing_marks"/>
+                            <field name="exam_location"/>
+                            <field name="exam_instructions"/>
+                            <field name="exam_materials"/>
+                            <field name="exam_link"/>
+                            <field name="description"/>
+                            <field name="active" invisible="1"/>
+                        </group>
                     </group>
+                    <notebook>
+                        <page name="student" string="Students">
+                            <field name="exam_student_ids" options="{'no_create': True}">
+                                <tree editable="bottom" string="Students">
+                                    <field name="student_id"/>
+                                    <field name="result"/>
+                                    <field name="marks"/>
+                                    <field name="status"/>
+                                    <field name="attendance_status"/>
+                                    <field name="notes"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
             </form>
         </field>
     </record>
-
     <record id="view_tree_school_exam" model="ir.ui.view">
         <field name="name">school.exam.tree</field>
         <field name="model">school.exam</field>
@@ -27,16 +93,45 @@
                 <field name="subject_id"/>
                 <field name="grade_id"/>
                 <field name="exam_date"/>
-                <field name="total_marks"/>
             </tree>
         </field>
     </record>
+    <record id="view_calendar_school_exam" model="ir.ui.view">
+        <field name="name">school.exam.calendar</field>
+        <field name="model">school.exam</field>
+        <field name="arch" type="xml">
+            <calendar date_start="start_time" date_stop="end_time" string="Exams" color="subject_id">
+                <field name="name"/>
+                <field name="subject_id" filters="1"/>
+                <field name="grade_id" filters="1"/>
+                <field name="section_id" filters="1"/>
+                <field name="teacher_id"/>
+                <field name="exam_date"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+                <field name="state" filters="1"/>
+            </calendar>
+        </field>
+    </record>
 
+    <record id="view_search_school_exam" model="ir.ui.view">
+        <field name="name">school.exam.search</field>
+        <field name="model">school.exam</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="subject_id"/>
+                <field name="grade_id"/>
+                <field name="section_id"/>
+                
+            </search>
+        </field>
+    </record>
+    
     <record id="action_school_exam" model="ir.actions.act_window">
         <field name="name">Exams</field>
         <field name="res_model">school.exam</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,calendar</field>
     </record>
-
     <menuitem id="school_submenu_exams" name="Exams" parent="school_menu_exams" action="action_school_exam"/>
 </odoo>

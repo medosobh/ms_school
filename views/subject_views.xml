@@ -1,45 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_form_school_subject" model="ir.ui.view">
-        <field name="name">school.subject.form</field>
-        <field name="model">school.subject</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="code"/>
-                        <field name="description"/>
-                        <field name="teacher_id"/>
-                        <field name="grade_id"/>
-                        <field name="section_id"/>
-                        <field name="active" invisible="1"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="view_tree_school_subject" model="ir.ui.view">
-        <field name="name">school.subject.tree</field>
-        <field name="model">school.subject</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="name"/>
-                <field name="code"/>
-                <field name="teacher_id"/>
-                <field name="grade_id"/>
-                <field name="section_id"/>
-                <field name="active" invisible="1"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="action_school_subject" model="ir.actions.act_window">
-        <field name="name">Subjects</field>
-        <field name="res_model">school.subject</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-
-    <menuitem id="school_submenu_subjects" name="Subjects" parent="school_menu_subjects" action="action_school_subject" sequence="41"/>
+    <data>
+        <record id="view_form_school_subject" model="ir.ui.view">
+            <field name="name">school.subject.form</field>
+            <field name="model">school.subject</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="description"/>
+                            <field name="teacher_id"/>
+                            <field name="grade_id"/>
+                            <field name="section_id"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_tree_school_subject" model="ir.ui.view">
+            <field name="name">school.subject.tree</field>
+            <field name="model">school.subject</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="teacher_id"/>
+                    <field name="grade_id"/>
+                    <field name="section_id"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_school_subject" model="ir.actions.act_window">
+            <field name="name">Subjects</field>
+            <field name="res_model">school.subject</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="school_submenu_subjects" name="Subjects" parent="school_menu_subjects" action="action_school_subject" sequence="41"/>
+    </data>
+    <data>
+        <record id="view_form_school_book" model="ir.ui.view">
+            <field name="name">school.book.form</field>
+            <field name="model">school.book</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="description"/>
+                            <field name="subject_id"/>
+                            <field name="grade_id"/>
+                            <field name="section_id"/>
+                            <field name="author"/>
+                            <field name="publisher"/>
+                            <field name="publication_date"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_tree_school_book" model="ir.ui.view">
+            <field name="name">school.book.tree</field>
+            <field name="model">school.book</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="subject_id"/>
+                    <field name="grade_id"/>
+                    <field name="section_id"/>
+                    <field name="author"/>
+                    <field name="publisher"/>
+                    <field name="publication_date"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_school_book" model="ir.actions.act_window">
+            <field name="name">Books</field>
+            <field name="res_model">school.book</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="school_submenu_books" name="Books" parent="school_menu_subjects" action="action_school_book" sequence="42"/>
+    </data>
 </odoo>
